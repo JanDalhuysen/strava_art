@@ -28,6 +28,7 @@ vector<Pt> read_pts(const string &file, bool raw = true)
     string line;
     while (getline(f, line))
     {
+        replace(line.begin(), line.end(), ',', ' ');
         stringstream ss(line);
         if (raw)
         {
@@ -59,10 +60,24 @@ void svg_circle(ofstream &o, const Pt &p, const string &fill, double r)
 int main()
 {
     // read data
-    vector<Pt> edges;
+    vector<Pt> edges_start, edges_end;
     {
-        auto e = read_pts("edges.csv", false);
-        edges.swap(e);
+        ifstream f("edges.csv");
+        if (!f.is_open())
+        {
+            cerr << "Error: Could not open file edges.csv" << endl;
+            return 1;
+        }
+        double x1, y1, x2, y2;
+        string line;
+        while (getline(f, line))
+        {
+            replace(line.begin(), line.end(), ',', ' ');
+            stringstream ss(line);
+            ss >> x1 >> y1 >> x2 >> y2;
+            edges_start.push_back({x1, y1});
+            edges_end.push_back({x2, y2});
+        }
     }
     vector<Pt> trace = read_pts("trace.csv");
     vector<Pt> matched;
@@ -86,7 +101,9 @@ int main()
         minY = min(minY, p.y);
         maxY = max(maxY, p.y);
     };
-    for (auto &p : edges)
+    for (auto &p : edges_start)
+        grow(p);
+    for (auto &p : edges_end)
         grow(p);
     for (auto &p : trace)
         grow(p);
@@ -111,8 +128,8 @@ int main()
         << "viewBox=\"" << minX << " " << minY << " " << (maxX - minX) << " " << (maxY - minY) << "\">";
 
     // edges (black)
-    for (size_t i = 0; i < edges.size(); i += 2)
-        svg_line(svg, edges[i], edges[i + 1], "black", 0.03);
+    for (size_t i = 0; i < edges_start.size(); ++i)
+        svg_line(svg, edges_start[i], edges_end[i], "black", 0.03);
 
     // trace (red)
     for (size_t i = 1; i < trace.size(); ++i)
