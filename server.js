@@ -1,8 +1,9 @@
+import fetch from 'node-fetch';
 import express from 'express';
 import multer from 'multer';
 import sharp from 'sharp';
 import polyline from 'polyline';
-import OSRM from 'node-osrm';
+
 import { lineString, nearestPointOnLine, distance } from '@turf/turf';
 import { buildGPX, BaseBuilder } from 'gpx-builder';
 
@@ -10,6 +11,9 @@ const { Point } = BaseBuilder.MODELS;
 
 const app  = express();
 const port = 3000;
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 // ------------------------------------------------------------------
 // Multer: keep single png/jpg upload
@@ -61,28 +65,33 @@ function geoPlace(pts, centerLat, centerLon, kmSpan = 10) {
 // 3) Map-matching with OSRM
 // ------------------------------------------------------------------
 async function matchRoute(coords) {
-  // Use public demo server or your own local OSRM instance
-  const osrm = new OSRM({ path: 'https://router.project-osrm.org' });
+  const url = new URL('https://router.project-osrm.org/match/v1/driving/');
+  // const url = new URL('https://routing.openstreetmap.de/routed-bike/route/v1/driving/');
+  url.pathname += coords.map(c => c.join(',')).join(';');
+  url.searchParams.set('geometries', 'geojson');
+  url.searchParams.set('overview', 'full');
 
-  const query = {
-    coordinates: coords,
-    geometries: 'geojson',
-    overview: 'full'
+  console.log(coords);
+  console.log(url.toString());
+  console.log('Fetching match from OSRM...');
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const result = await response.json();
+  console.log('OSRM response:', result);
+
+  if (result.code !== 'Ok' || !result.matchings || !result.matchings.length) {
+    throw new Error('No match found');
+  }
+
+  const match = result.matchings[0];
+  return {
+    geometry: match.geometry,
+    distance: match.distance,
+    duration: match.duration
   };
-
-  return new Promise((res, rej) => {
-    osrm.match(query, (err, result) => {
-      if (err) return rej(err);
-      if (!result.matchings.length) return rej('No match');
-
-      const match = result.matchings[0];
-      res({
-        geometry: match.geometry,
-        distance: match.distance,
-        duration: match.duration
-      });
-    });
-  });
 }
 
 // ------------------------------------------------------------------
@@ -123,7 +132,15 @@ app.post('/generate', upload.single('image'), async (req, res) => {
     const match = await matchRoute(wgs);
     const score = scoreRoute(wgs, match.geometry);
 
+    console.log(pts);
+    console.log(wgs);
+    console.log(match);
+    console.log(score);
+
     const gpx = toGPX(match.geometry.coordinates);
+
+    console.log('GPX generated');
+    console.log(gpx);
 
     res.set('Content-Type', 'application/gpx+xml');
     res.attachment('strava-art.gpx');
@@ -134,6 +151,6 @@ app.post('/generate', upload.single('image'), async (req, res) => {
 });
 
 // Health-check
-app.get('/', (_, res) => res.send('Strava Art server running'));
+app.get('/', (_, res) => res.render('index'));
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
