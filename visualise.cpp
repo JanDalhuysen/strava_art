@@ -1,4 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <algorithm>
+#include <cstdlib>
 
 using namespace std;
 
@@ -12,6 +19,11 @@ vector<Pt> read_pts(const string &file, bool raw = true)
 {
     vector<Pt> v;
     ifstream f(file);
+    if (!f.is_open())
+    {
+        cerr << "Error: Could not open file " << file << endl;
+        exit(1);
+    }
     double a, b, c, d;
     string line;
     while (getline(f, line))
@@ -35,12 +47,12 @@ vector<Pt> read_pts(const string &file, bool raw = true)
 // ---------- SVG helpers ----------
 void svg_line(ofstream &o, const Pt &a, const Pt &b, const string &stroke, double width)
 {
-    o << "<line x1=\"" << a.x << "\" y1=\"" << -a.y << "\" x2=\"" << b.x << "\" y2=\"" << -b.y << "\" stroke=\""
+    o << "<line x1=\"" << a.x << "\" y1=\"" << a.y << "\" x2=\"" << b.x << "\" y2=\"" << b.y << "\" stroke=\""
       << stroke << "\" stroke-width=\"" << width << "\" />\n";
 }
 void svg_circle(ofstream &o, const Pt &p, const string &fill, double r)
 {
-    o << "<circle cx=\"" << p.x << "\" cy=\"" << -p.y << "\" r=\"" << r << "\" fill=\"" << fill << "\" />\n";
+    o << "<circle cx=\"" << p.x << "\" cy=\"" << p.y << "\" r=\"" << r << "\" fill=\"" << fill << "\" />\n";
 }
 
 // ---------- main ----------
@@ -56,6 +68,11 @@ int main()
     vector<Pt> matched;
     {
         ifstream f("matched.txt");
+        if (!f.is_open())
+        {
+            cerr << "Error: Could not open file matched.txt" << endl;
+            return 1;
+        }
         double x, y;
         while (f >> x >> y)
             matched.push_back({x, y});
@@ -84,9 +101,14 @@ int main()
 
     // write SVG
     ofstream svg("map.svg");
+    if (!svg.is_open())
+    {
+        cerr << "Error: Could not open file map.svg for writing" << endl;
+        return 1;
+    }
     svg << fixed << setprecision(3);
     svg << "<svg xmlns=\"http://www.w3.org/2000/svg\" "
-        << "viewBox=\"" << minX << " " << -maxY << " " << (maxX - minX) << " " << (maxY - minY) << "\">\n";
+        << "viewBox=\"" << minX << " " << minY << " " << (maxX - minX) << " " << (maxY - minY) << "\">";
 
     // edges (black)
     for (size_t i = 0; i < edges.size(); i += 2)
@@ -102,4 +124,5 @@ int main()
 
     svg << "</svg>\n";
     cout << "Generated map.svg  (open in browser)\n";
+    return 0;
 }
