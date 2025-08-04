@@ -35,7 +35,7 @@ int main() {
     // Generate a 3x3 grid with unit spacing
     std::ofstream file("edges.csv");
     if (file.is_open()) {
-        generateGrid(file, 3, 3, 1.0);
+        generateGrid(file, 6, 6, 0.5);
         file.close();
         std::cout << "Grid generated and saved to edges.csv" << std::endl;
     } else {
