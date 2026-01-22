@@ -20,5 +20,9 @@
     "node-fetch": "^3.3.2",
     "polyline": "^0.2.0",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.0",
+    "prettier-plugin-ejs": "^1.0.3"
   }
 }

@@ -1,4 +1,3 @@
-
 # [WIP] Strava Art Generator: Snap image to roads (map matching)
 
 Map matching is described as a hidden Markov model where emission probability is a confidence of a point to belong a single segment, and the transition probability is presented as possibility of a point to move from one segment to another within a given time.
@@ -8,4 +7,3 @@ Map matching is described as a hidden Markov model where emission probability is
 ![dino.png](public/dino.png)
 ![giraffe.png](public/giraffe.png)
 ![tiger.png](public/tiger.png)
-

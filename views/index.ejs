@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Strava Art Generator</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
     <h1>Strava Art Generator</h1>
     <form action="/generate" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" accept="image/png, image/jpeg" required>
-        </div>
-        <div>
-            <label for="lat">Latitude:</label>
-            <input type="text" id="lat" name="lat" required>
-        </div>
-        <div>
-            <label for="lon">Longitude:</label>
-            <input type="text" id="lon" name="lon" required>
-        </div>
-        <button type="submit">Generate GPX</button>
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/png, image/jpeg" required />
+      </div>
+      <div>
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" name="lat" required />
+      </div>
+      <div>
+        <label for="lon">Longitude:</label>
+        <input type="text" id="lon" name="lon" required />
+      </div>
+      <button type="submit">Generate GPX</button>
     </form>
-</body>
+  </body>
 </html>

@@ -1,11 +1,11 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <iomanip>
 #include <algorithm>
 #include <cstdlib>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -48,8 +48,8 @@ vector<Pt> read_pts(const string &file, bool raw = true)
 // ---------- SVG helpers ----------
 void svg_line(ofstream &o, const Pt &a, const Pt &b, const string &stroke, double width)
 {
-    o << "<line x1=\"" << a.x << "\" y1=\"" << a.y << "\" x2=\"" << b.x << "\" y2=\"" << b.y << "\" stroke=\""
-      << stroke << "\" stroke-width=\"" << width << "\" />\n";
+    o << "<line x1=\"" << a.x << "\" y1=\"" << a.y << "\" x2=\"" << b.x << "\" y2=\"" << b.y << "\" stroke=\"" << stroke
+      << "\" stroke-width=\"" << width << "\" />\n";
 }
 void svg_circle(ofstream &o, const Pt &p, const string &fill, double r)
 {
@@ -68,13 +68,14 @@ int main()
             cerr << "Error: Could not open file edges.csv" << endl;
             return 1;
         }
+        int id;
         double x1, y1, x2, y2;
         string line;
         while (getline(f, line))
         {
             replace(line.begin(), line.end(), ',', ' ');
             stringstream ss(line);
-            ss >> x1 >> y1 >> x2 >> y2;
+            ss >> id >> x1 >> y1 >> x2 >> y2;
             edges_start.push_back({x1, y1});
             edges_end.push_back({x2, y2});
         }
@@ -138,6 +139,24 @@ int main()
     // matched points (blue)
     for (const Pt &p : matched)
         svg_circle(svg, p, "blue", 0.08);
+
+    // matched path as orthogonal segments (blue)
+    auto eq = [](double a, double b) { return fabs(a - b) < 1e-9; };
+    for (size_t i = 1; i < matched.size(); ++i)
+    {
+        Pt a = matched[i - 1];
+        Pt b = matched[i];
+        if (eq(a.x, b.x) || eq(a.y, b.y))
+        {
+            svg_line(svg, a, b, "blue", 0.05);
+        }
+        else
+        {
+            Pt mid = {b.x, a.y};
+            svg_line(svg, a, mid, "blue", 0.05);
+            svg_line(svg, mid, b, "blue", 0.05);
+        }
+    }
 
     svg << "</svg>\n";
     cout << "Generated map.svg  (open in browser)\n";

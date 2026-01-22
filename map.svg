@@ -1,76 +1,164 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.250 -0.250 3.000 3.000"><line x1="0.000" y1="0.000" x2="0.500" y2="0.000" stroke="black" stroke-width="0.030" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.400 -0.400 4.800 4.800"><line x1="0.000" y1="0.000" x2="0.500" y2="0.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="0.000" x2="1.000" y2="0.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="0.000" x2="1.500" y2="0.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="0.000" x2="2.000" y2="0.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="0.000" x2="2.500" y2="0.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="0.000" x2="3.000" y2="0.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="0.000" x2="3.500" y2="0.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="0.000" x2="4.000" y2="0.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="0.500" x2="0.500" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="0.500" x2="1.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="0.500" x2="1.500" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="0.500" x2="2.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="0.500" x2="2.500" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="0.500" x2="3.000" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="0.500" x2="3.500" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="0.500" x2="4.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="1.000" x2="0.500" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="1.000" x2="1.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="1.000" x2="1.500" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="1.000" x2="2.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="1.000" x2="2.500" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="1.000" x2="3.000" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="1.000" x2="3.500" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="1.000" x2="4.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="1.500" x2="0.500" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="1.500" x2="1.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="1.500" x2="1.500" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="1.500" x2="2.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="1.500" x2="2.500" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="1.500" x2="3.000" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="1.500" x2="3.500" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="1.500" x2="4.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="2.000" x2="0.500" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="2.000" x2="1.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="2.000" x2="1.500" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="2.000" x2="2.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="2.000" x2="2.500" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="2.000" x2="3.000" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="2.000" x2="3.500" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="2.000" x2="4.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="2.500" x2="0.500" y2="2.500" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="2.500" x2="1.000" y2="2.500" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="2.500" x2="1.500" y2="2.500" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="2.500" x2="2.000" y2="2.500" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="2.500" x2="2.500" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="2.500" x2="3.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="2.500" x2="3.500" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="2.500" x2="4.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="3.000" x2="0.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="3.000" x2="1.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="3.000" x2="1.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="3.000" x2="2.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="3.000" x2="2.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="3.000" x2="3.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="3.000" x2="3.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="3.000" x2="4.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="3.500" x2="0.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="3.500" x2="1.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="3.500" x2="1.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="3.500" x2="2.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="3.500" x2="2.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="3.500" x2="3.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="3.500" x2="3.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="3.500" x2="4.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="4.000" x2="0.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="4.000" x2="1.000" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="4.000" x2="1.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="4.000" x2="2.000" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="4.000" x2="2.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="4.000" x2="3.000" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="4.000" x2="3.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="4.000" x2="4.000" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="0.000" x2="0.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="0.500" x2="0.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="1.000" x2="0.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="1.500" x2="0.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="0.000" y1="2.000" x2="0.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="2.500" x2="0.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="3.000" x2="0.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="0.000" y1="3.500" x2="0.000" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="0.000" x2="0.500" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="0.500" x2="0.500" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="1.000" x2="0.500" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="1.500" x2="0.500" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="0.500" y1="2.000" x2="0.500" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="2.500" x2="0.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="3.000" x2="0.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="0.500" y1="3.500" x2="0.500" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="0.000" x2="1.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="0.500" x2="1.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="1.000" x2="1.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="1.500" x2="1.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="1.000" y1="2.000" x2="1.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="2.500" x2="1.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="3.000" x2="1.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="1.000" y1="3.500" x2="1.000" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="0.000" x2="1.500" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="0.500" x2="1.500" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="1.000" x2="1.500" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="1.500" x2="1.500" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="1.500" y1="2.000" x2="1.500" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="2.500" x2="1.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="3.000" x2="1.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="1.500" y1="3.500" x2="1.500" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="0.000" x2="2.000" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="0.500" x2="2.000" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="1.000" x2="2.000" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="1.500" x2="2.000" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="2.000" y1="2.000" x2="2.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="2.500" x2="2.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="3.000" x2="2.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="2.000" y1="3.500" x2="2.000" y2="4.000" stroke="black" stroke-width="0.030" />
 <line x1="2.500" y1="0.000" x2="2.500" y2="0.500" stroke="black" stroke-width="0.030" />
 <line x1="2.500" y1="0.500" x2="2.500" y2="1.000" stroke="black" stroke-width="0.030" />
 <line x1="2.500" y1="1.000" x2="2.500" y2="1.500" stroke="black" stroke-width="0.030" />
 <line x1="2.500" y1="1.500" x2="2.500" y2="2.000" stroke="black" stroke-width="0.030" />
 <line x1="2.500" y1="2.000" x2="2.500" y2="2.500" stroke="black" stroke-width="0.030" />
-<line x1="0.050" y1="0.050" x2="0.950" y2="0.050" stroke="red" stroke-width="0.050" />
-<line x1="0.950" y1="0.050" x2="0.980" y2="0.450" stroke="red" stroke-width="0.050" />
-<line x1="0.980" y1="0.450" x2="1.020" y2="0.950" stroke="red" stroke-width="0.050" />
-<line x1="1.020" y1="0.950" x2="1.950" y2="0.980" stroke="red" stroke-width="0.050" />
-<line x1="1.950" y1="0.980" x2="2.000" y2="2.000" stroke="red" stroke-width="0.050" />
-<line x1="2.000" y1="2.000" x2="1.500" y2="2.000" stroke="red" stroke-width="0.050" />
-<line x1="1.500" y1="2.000" x2="1.250" y2="2.250" stroke="red" stroke-width="0.050" />
-<circle cx="0.500" cy="0.050" r="0.080" fill="blue" />
-<circle cx="0.950" cy="0.000" r="0.080" fill="blue" />
-<circle cx="0.980" cy="0.500" r="0.080" fill="blue" />
-<circle cx="1.020" cy="1.000" r="0.080" fill="blue" />
-<circle cx="1.950" cy="1.000" r="0.080" fill="blue" />
-<circle cx="2.000" cy="2.000" r="0.080" fill="blue" />
-<circle cx="1.500" cy="2.000" r="0.080" fill="blue" />
-<circle cx="1.260" cy="2.190" r="0.080" fill="blue" />
+<line x1="2.500" y1="2.500" x2="2.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="3.000" x2="2.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="2.500" y1="3.500" x2="2.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="0.000" x2="3.000" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="0.500" x2="3.000" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="1.000" x2="3.000" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="1.500" x2="3.000" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="2.000" x2="3.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="2.500" x2="3.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="3.000" x2="3.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="3.000" y1="3.500" x2="3.000" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="0.000" x2="3.500" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="0.500" x2="3.500" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="1.000" x2="3.500" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="1.500" x2="3.500" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="2.000" x2="3.500" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="2.500" x2="3.500" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="3.000" x2="3.500" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="3.500" y1="3.500" x2="3.500" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="0.000" x2="4.000" y2="0.500" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="0.500" x2="4.000" y2="1.000" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="1.000" x2="4.000" y2="1.500" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="1.500" x2="4.000" y2="2.000" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="2.000" x2="4.000" y2="2.500" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="2.500" x2="4.000" y2="3.000" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="3.000" x2="4.000" y2="3.500" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="3.500" x2="4.000" y2="4.000" stroke="black" stroke-width="0.030" />
+<line x1="4.000" y1="2.500" x2="3.714" y2="3.382" stroke="red" stroke-width="0.050" />
+<line x1="3.714" y1="3.382" x2="2.964" y2="3.927" stroke="red" stroke-width="0.050" />
+<line x1="2.964" y1="3.927" x2="2.036" y2="3.927" stroke="red" stroke-width="0.050" />
+<line x1="2.036" y1="3.927" x2="1.286" y2="3.382" stroke="red" stroke-width="0.050" />
+<line x1="1.286" y1="3.382" x2="1.000" y2="2.500" stroke="red" stroke-width="0.050" />
+<line x1="1.000" y1="2.500" x2="1.286" y2="1.618" stroke="red" stroke-width="0.050" />
+<line x1="1.286" y1="1.618" x2="2.036" y2="1.073" stroke="red" stroke-width="0.050" />
+<line x1="2.036" y1="1.073" x2="2.964" y2="1.073" stroke="red" stroke-width="0.050" />
+<line x1="2.964" y1="1.073" x2="3.714" y2="1.618" stroke="red" stroke-width="0.050" />
+<circle cx="4.000" cy="2.500" r="0.080" fill="blue" />
+<circle cx="3.714" cy="3.500" r="0.080" fill="blue" />
+<circle cx="3.000" cy="3.927" r="0.080" fill="blue" />
+<circle cx="2.000" cy="3.927" r="0.080" fill="blue" />
+<circle cx="1.286" cy="3.500" r="0.080" fill="blue" />
+<circle cx="1.000" cy="2.500" r="0.080" fill="blue" />
+<circle cx="1.286" cy="1.500" r="0.080" fill="blue" />
+<circle cx="2.000" cy="1.073" r="0.080" fill="blue" />
+<circle cx="3.000" cy="1.073" r="0.080" fill="blue" />
+<circle cx="3.714" cy="1.500" r="0.080" fill="blue" />
 </svg>

@@ -1,0 +1,6 @@
+# Ensure all files are stored as LF and checked out as LF (even on Windows)
+* text=auto eol=lf
+
+# Explicitly keep binary files binary (images, audio, etc.) to prevent corruption
+*.png binary
+*.exe binary

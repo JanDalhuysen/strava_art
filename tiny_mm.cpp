@@ -1,12 +1,12 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <cmath>
-#include <iomanip>
 #include <algorithm>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -32,7 +32,8 @@ vector<Edge> read_edges(const string &file)
 {
     vector<Edge> out;
     ifstream f(file);
-    if (!f.is_open()) {
+    if (!f.is_open())
+    {
         throw runtime_error("Could not open edge file: " + file);
     }
     string line;
@@ -51,7 +52,8 @@ vector<Pt> read_trace(const string &file)
 {
     vector<Pt> out;
     ifstream f(file);
-    if (!f.is_open()) {
+    if (!f.is_open())
+    {
         throw runtime_error("Could not open trace file: " + file);
     }
     string line;
@@ -119,17 +121,27 @@ int main()
 
         cout << "Read " << edges.size() << " edges and " << trace.size() << " trace points." << endl;
 
-        if (edges.empty() || trace.empty()) {
+        if (edges.empty() || trace.empty())
+        {
             cerr << "Warning: Edge or trace data is empty. No matching will be performed." << endl;
             return 1;
         }
 
         auto matched = snap(edges, trace);
 
-        cout << fixed << setprecision(2);
-        cout << "matched trace (lon lat):\n";
+        // Print summary to stderr, coordinates to stdout
+        cerr << fixed << setprecision(2);
+        cerr << "matched trace (lon lat):\n";
         for (auto &p : matched)
-            cout << p.x << ' ' << p.y << '\n';
+            cerr << p.x << ' ' << p.y << '\n';
+
+        // Also save to matched.txt in clean format
+        ofstream out("matched.txt");
+        out << fixed << setprecision(6);
+        for (auto &p : matched)
+            out << p.x << ' ' << p.y << '\n';
+        out.close();
+        cerr << "Saved to matched.txt\n";
     }
     catch (const runtime_error &e)
     {
