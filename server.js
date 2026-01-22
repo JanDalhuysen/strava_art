@@ -3,7 +3,6 @@ import express from "express";
 import { BaseBuilder, buildGPX, GarminBuilder } from "gpx-builder";
 import multer from "multer";
 import fetch from "node-fetch";
-import polyline from "polyline";
 import sharp from "sharp";
 
 const { Point } = BaseBuilder.MODELS;
@@ -23,19 +22,22 @@ const upload = multer({
 });
 
 // ------------------------------------------------------------------
-// ------------------------------------------------------------------
 // 1) Image → ordered point list
 // ------------------------------------------------------------------
 async function imageToPoints(filePath) {
-  const { data, info } = await sharp(filePath).greyscale().threshold(128).raw().toBuffer({ resolveWithObject: true });
+  // Resize to a manageable size (e.g., 150px width) to reduce noise and point count
+  // This also effectively performs a "downsampling" which helps with smoothing
+  const pipeline = sharp(filePath).resize(150).greyscale().threshold(128).raw();
+
+  const { data, info } = await pipeline.toBuffer({ resolveWithObject: true });
 
   const w = info.width,
     h = info.height;
   const pts = [];
 
-  // Collect all dark pixels with finer sampling
-  for (let y = 0; y < h; y += 2) {
-    for (let x = 0; x < w; x += 2) {
+  // Collect all dark pixels
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
       if (data[y * w + x] < 128) pts.push({ x, y });
     }
   }
@@ -45,16 +47,19 @@ async function imageToPoints(filePath) {
   }
 
   // Order points using nearest-neighbor to form a continuous path
+  // Start from the first point found
   const ordered = [pts[0]];
   const remaining = new Set(pts.slice(1));
 
+  // Optimization: Spatial hashing could speed this up, but for 150px image, N is small enough
   while (remaining.size > 0) {
     const last = ordered[ordered.length - 1];
     let nearest = null;
     let minDist = Infinity;
 
+    // Simple greedy search
     for (const pt of remaining) {
-      const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+      const dist = (pt.x - last.x) ** 2 + (pt.y - last.y) ** 2; // Squared distance is enough for comparison
       if (dist < minDist) {
         minDist = dist;
         nearest = pt;
@@ -69,52 +74,76 @@ async function imageToPoints(filePath) {
     }
   }
 
-  return ordered;
+  return { points: ordered, width: w, height: h };
 }
 
 // ------------------------------------------------------------------
 // 2) Map pixels → WGS-84 (linear transform)
 // ------------------------------------------------------------------
-function geoPlace(pts, centerLat, centerLon, kmSpan = 10) {
-  const kmPerLat = 1.32;
-  const kmPerLon = 1.32 * Math.cos((centerLat * Math.PI) / 180);
+function geoPlace(imgData, centerLat, centerLon, kmSpan = 3) {
+  const { points, width, height } = imgData;
+
+  // 1 degree latitude is approx 111.32 km
+  const kmPerLat = 111.32;
+  // 1 degree longitude depends on latitude
+  const kmPerLon = 111.32 * Math.cos((centerLat * Math.PI) / 180);
+
   const spanLat = kmSpan / kmPerLat;
   const spanLon = kmSpan / kmPerLon;
 
-  return pts.map((p) => [centerLon + (p.x / 1000 - 0.5) * spanLon, centerLat + (p.y / 1000 - 0.5) * spanLat]);
+  return points.map((p) => [
+    centerLon + (p.x / width - 0.5) * spanLon,
+    centerLat + (0.5 - p.y / height) * spanLat, // Flip Y because image Y goes down, Lat goes up
+  ]);
 }
 
 // ------------------------------------------------------------------
 // 3) Map-matching with OSRM
 // ------------------------------------------------------------------
 async function matchRoute(coords) {
-  const limitedCoords = coords.slice(0, 40);
-  const url = new URL("https://router.project-osrm.org/match/v1/driving/");
+  // OSRM public demo server often limits to ~100, but recommendations suggest 25 for safety.
+  // We sub-sample to avoid "TooBig" errors.
+  const MAX_POINTS = 5;
+  const step = Math.ceil(coords.length / MAX_POINTS);
+  const limitedCoords = coords
+    .filter((_, i) => i % step === 0)
+    .slice(0, MAX_POINTS)
+    // Round to 5 decimal places to reduce URL length
+    .map((c) => [Number(c[0].toFixed(5)), Number(c[1].toFixed(5))]);
+
+  const url = new URL("https://router.project-osrm.org/match/v1/walking/"); // Use walking profile for strava art
   url.pathname += limitedCoords.map((c) => c.join(",")).join(";");
   url.searchParams.set("geometries", "geojson");
   url.searchParams.set("overview", "full");
 
-  console.log(limitedCoords);
-  // console.log(url.toString());
-  // console.log("Fetching match from OSRM...");
+  // Timestamps can help OSRM but are optional. Omit for now.
 
-  // const response = await fetch(url);
-  // if (!response.ok) {
-  //   throw new Error(`HTTP error! status: ${response.status}`);
-  // }
-  // const result = await response.json();
-  // console.log("OSRM response:", result);
+  console.log(`Requesting OSRM match for ${limitedCoords.length} points...`);
 
-  // if (result.code !== "Ok" || !result.matchings || !result.matchings.length) {
-  //   throw new Error("No match found");
-  // }
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      const txt = await response.text();
+      throw new Error(`OSRM HTTP error ${response.status}: ${txt}`);
+    }
+    const result = await response.json();
 
-  // const match = result.matchings[0];
-  // return {
-  //   geometry: match.geometry,
-  //   distance: match.distance,
-  //   duration: match.duration,
-  // };
+    if (result.code !== "Ok" || !result.matchings || !result.matchings.length) {
+      console.warn("OSRM returned no match:", result.code, result.message);
+      throw new Error(`OSRM Error: ${result.code} - ${result.message || "No match found"}`);
+    }
+
+    // Return the best match (highest confidence)
+    const match = result.matchings[0];
+    return {
+      geometry: match.geometry,
+      distance: match.distance,
+      duration: match.duration,
+    };
+  } catch (err) {
+    console.error("OSRM call failed:", err);
+    throw err;
+  }
 }
 
 // ------------------------------------------------------------------
@@ -124,6 +153,8 @@ function scoreRoute(rawCoords, match) {
   let totalErr = 0;
   const line = lineString(match.geometry.coordinates);
   rawCoords.forEach((c) => {
+    // Turf distance is in km by default? No, degrees if units not specified?
+    // Turf distance default units is kilometers
     totalErr += distance(c, nearestPointOnLine(line, c));
   });
   return {
@@ -150,26 +181,27 @@ app.post("/generate", upload.single("image"), async (req, res) => {
     const { lat, lon } = req.body;
     if (!lat || !lon) return res.status(400).send("lat & lon required");
 
-    const pts = await imageToPoints(req.file.path);
-    const wgs = geoPlace(pts, +lat, +lon);
-    const match = await matchRoute(wgs);
-    const score = scoreRoute(wgs, match);
+    console.log("Processing image...");
+    const imgData = await imageToPoints(req.file.path);
+    console.log(`Extracted ${imgData.points.length} points from image.`);
 
-    console.log(pts);
-    console.log(wgs);
-    console.log(match);
-    console.log(score);
+    console.log("Mapping to coordinates...");
+    const wgs = geoPlace(imgData, +lat, +lon);
+
+    console.log("Matching with OSRM...");
+    const match = await matchRoute(wgs);
+
+    const score = scoreRoute(wgs, match);
+    console.log(`Route matched! Distance: ${match.distance}m, Error Score: ${score.error}`);
 
     const gpx = toGPX(match.geometry.coordinates);
-
-    console.log("GPX generated");
-    console.log(gpx);
 
     res.set("Content-Type", "application/gpx+xml");
     res.attachment("strava-art.gpx");
     res.send(gpx);
   } catch (e) {
-    res.status(500).send(String(e));
+    console.error("Generation failed:", e);
+    res.status(500).send("Error generating route: " + e.message);
   }
 });
 
